@@ -1,0 +1,23 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: productstore_backend_development
+  username: <%= ENV['PRODUCTSTORE-BACKEND_DEVELOPMENT_DB_USERNAME'] %>
+  password: <%= ENV['PRODUCTSTORE-BACKEND_DEVELOPMENT_DB_PASSWORD'] %>
+  host: localhost
+  port: 5432
+
+test:
+  <<: *default
+  database: productstore-backend_test
+
+production:
+  <<: *default
+  database: productstore-backend_production
+  username: <%= ENV['PRODUCTSTORE-BACKEND_DATABASE_USERNAME'] %>
+  password: <%= ENV['PRODUCTSTORE-BACKEND_DATABASE_PASSWORD'] %>
